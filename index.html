@@ -26,6 +26,7 @@
             position: relative;
         }
 
+        /* تأثير تشويش الشاشات العسكرية Scanlines */
         body::before {
             content: " ";
             display: block;
@@ -37,9 +38,10 @@
             pointer-events: none;
         }
 
+        /* إطار النظام الرئيسي - متوافق مع الهاتف والحاسوب */
         .terminal-container {
             border: 2px solid var(--primary-color);
-            background-color: rgba(15, 0, 3, 0.85);
+            background-color: rgba(15, 0, 3, 0.95);
             box-shadow: 0 0 30px var(--glow-color), inset 0 0 20px rgba(255, 0, 51, 0.2);
             max-width: 700px;
             width: 100%;
@@ -58,6 +60,7 @@
             padding-bottom: 15px;
             margin-bottom: 25px;
             text-shadow: 0 0 10px var(--primary-color);
+            text-align: center;
         }
 
         .danger-glitch {
@@ -74,8 +77,12 @@
             white-space: pre-wrap;
             margin-bottom: 30px;
             text-shadow: 0 0 5px rgba(255, 179, 179, 0.5);
+            border: 1px solid rgba(255, 0, 51, 0.2);
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.5);
         }
 
+        /* مؤشر الهاكرز الوامض في نهاية النص */
         .cursor {
             display: inline-block;
             width: 10px;
@@ -86,6 +93,7 @@
             margin-right: 5px;
         }
 
+        /* زر استقبال البث */
         .terminal-btn {
             background-color: transparent;
             color: var(--primary-color);
@@ -99,6 +107,8 @@
             letter-spacing: 1px;
             box-shadow: 0 0 15px rgba(255, 0, 51, 0.2);
             transition: all 0.3s ease;
+            display: block;
+            margin: 0 auto;
         }
 
         .terminal-btn:hover {
@@ -114,6 +124,7 @@
 
         @keyframes blink { 50% { opacity: 0; } }
 
+        /* شاشات الحاسوب الكبيرة */
         @media (min-width: 768px) {
             .system-header { font-size: 28px; }
             .terminal-screen { font-size: 24px; min-height: 260px; }
@@ -128,11 +139,13 @@
             <span class="danger-glitch">⚠️</span> نـظـام مـيـراي الـمـركـزي <span class="danger-glitch">⚠️</span>
         </div>
         
+        <!-- الواجهة الاساسية المستقرة والمحسنة -->
         <div id="terminalScreen" class="terminal-screen">اضغط أدناه لفك تشفير البث العسكري الطارئ واستقبل التوجيهات...</div>
         
         <button id="actionBtn" class="terminal-btn" onclick="initializeBroadcast()">بث حالة الاحتواء 📡</button>
     </div>
 
+    <!-- ملف الصوت المرفوع محلياً على جيتهوب -->
     <audio id="miraiAudio" preload="auto">
         <source src="mirai.mp3" type="audio/mpeg">
     </audio>
@@ -148,7 +161,7 @@
         function startTyping() {
             if (index < fullText.length) {
                 let currentChar = fullText.charAt(index);
-                let delay = 120; // السرعة الأساسية المتوافقة رياضياً مع الـ 21 ثانية
+                let delay = 120; // السرعة المتوافقة رياضياً مع الـ 21 ثانية الصوتية
                 
                 if (index === 0) screen.innerHTML = ""; 
 
@@ -158,11 +171,11 @@
                     screen.innerHTML += currentChar;
                 }
                 
-                // وقفات ذكية سينمائية عند علامات التوقف لتطابق نبرة الإلقاء البشري الموزع
+                // فحص ذكي ومبسط للعلامات لتجنب التعارض
                 if (currentChar === '.' || currentChar === '!') {
-                    delay = 1000; // التوقف لمدة ثانية كاملة عند نهاية الجملة
+                    delay = 900; 
                 } else if (currentChar === '،') {
-                    delay = 500;  // التوقف لنصف ثانية عند الفاصلة
+                    delay = 450;  
                 }
                 
                 index++;
