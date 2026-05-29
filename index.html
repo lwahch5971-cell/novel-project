@@ -3,18 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-select=none">
-    <title>🚨 MIRAI CENTRAL SYSTEM - LEVEL RED</title>
+    <title>🚨 نظام ميراي المركزي</title>
     <style>
         :root {
             --primary-color: #ff0033;
-            --glow-color: rgba(255, 0, 51, 0.6);
             --bg-color: #030000;
         }
-
         body {
             background-color: var(--bg-color);
             color: var(--primary-color);
-            font-family: 'Courier New', Courier, monospace, sans-serif;
+            font-family: monospace, sans-serif;
             margin: 0;
             padding: 20px;
             display: flex;
@@ -23,129 +21,69 @@
             min-height: 100vh;
             box-sizing: border-box;
             overflow: hidden;
-            position: relative;
         }
-
-        /* تأثير تشويش الشاشات العسكرية Scanlines */
-        body::before {
-            content: " ";
-            display: block;
-            position: absolute;
-            top: 0; left: 0; bottom: 0; right: 0;
-            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0), rgba(0, 0, 255, 0.03));
-            z-index: 2;
-            background-size: 100% 4px, 6px 100%;
-            pointer-events: none;
-        }
-
-        /* إطار النظام الرئيسي - متوافق مع الهاتف والحاسوب */
         .terminal-container {
             border: 2px solid var(--primary-color);
-            background-color: rgba(15, 0, 3, 0.95);
-            box-shadow: 0 0 30px var(--glow-color), inset 0 0 20px rgba(255, 0, 51, 0.2);
-            max-width: 700px;
+            background-color: #0f0003;
+            box-shadow: 0 0 25px rgba(255, 0, 51, 0.5);
+            max-width: 650px;
             width: 100%;
-            padding: 30px;
+            padding: 25px;
             border-radius: 4px;
-            position: relative;
-            z-index: 5;
-            backdrop-filter: blur(5px);
-        }
-
-        .system-header {
-            font-size: 24px;
-            font-weight: bold;
-            letter-spacing: 2px;
-            border-bottom: 2px dashed var(--primary-color);
-            padding-bottom: 15px;
-            margin-bottom: 25px;
-            text-shadow: 0 0 10px var(--primary-color);
             text-align: center;
         }
-
-        .danger-glitch {
-            animation: flash 0.8s infinite alternate;
-            display: inline-block;
+        .system-header {
+            font-size: 22px;
+            font-weight: bold;
+            border-bottom: 2px dashed var(--primary-color);
+            padding-bottom: 12px;
+            margin-bottom: 20px;
         }
-
         .terminal-screen {
-            font-size: 21px;
-            line-height: 1.7;
+            font-size: 20px;
+            line-height: 1.6;
             color: #ffb3b3;
             text-align: right;
-            min-height: 220px;
+            min-height: 200px;
             white-space: pre-wrap;
-            margin-bottom: 30px;
-            text-shadow: 0 0 5px rgba(255, 179, 179, 0.5);
+            margin-bottom: 25px;
             border: 1px solid rgba(255, 0, 51, 0.2);
             padding: 15px;
-            background: rgba(0, 0, 0, 0.5);
+            background: #000000;
         }
-
-        /* مؤشر الهاكرز الوامض في نهاية النص */
         .cursor {
             display: inline-block;
             width: 10px;
-            height: 20px;
+            height: 18px;
             background-color: var(--primary-color);
             animation: blink 0.6s infinite;
             vertical-align: middle;
-            margin-right: 5px;
         }
-
-        /* زر استقبال البث */
         .terminal-btn {
             background-color: transparent;
             color: var(--primary-color);
             border: 2px solid var(--primary-color);
-            padding: 15px 40px;
-            font-size: 18px;
+            padding: 12px 35px;
+            font-size: 16px;
             font-weight: bold;
-            font-family: 'Courier New', sans-serif;
             cursor: pointer;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            box-shadow: 0 0 15px rgba(255, 0, 51, 0.2);
-            transition: all 0.3s ease;
-            display: block;
-            margin: 0 auto;
+            box-shadow: 0 0 10px rgba(255, 0, 51, 0.2);
         }
-
         .terminal-btn:hover {
             background-color: var(--primary-color);
             color: black;
-            box-shadow: 0 0 25px var(--primary-color);
         }
-
-        @keyframes flash {
-            0% { opacity: 1; text-shadow: 0 0 15px var(--primary-color); }
-            100% { opacity: 0.3; text-shadow: 0 0 2px var(--primary-color); }
-        }
-
         @keyframes blink { 50% { opacity: 0; } }
-
-        /* شاشات الحاسوب الكبيرة */
-        @media (min-width: 768px) {
-            .system-header { font-size: 28px; }
-            .terminal-screen { font-size: 24px; min-height: 260px; }
-            .terminal-container { padding: 45px; }
-        }
     </style>
 </head>
 <body>
 
     <div class="terminal-container">
-        <div class="system-header">
-            <span class="danger-glitch">⚠️</span> نـظـام مـيـراي الـمـركـزي <span class="danger-glitch">⚠️</span>
-        </div>
-        
-        <!-- الواجهة الاساسية المستقرة والمحسنة -->
+        <div class="system-header">⚠️ نـظـام مـيـراي الـمـركـزي ⚠️</div>
         <div id="terminalScreen" class="terminal-screen">اضغط أدناه لفك تشفير البث العسكري الطارئ واستقبل التوجيهات...</div>
-        
         <button id="actionBtn" class="terminal-btn" onclick="initializeBroadcast()">بث حالة الاحتواء 📡</button>
     </div>
 
-    <!-- ملف الصوت المرفوع محلياً على جيتهوب -->
     <audio id="miraiAudio" preload="auto">
         <source src="mirai.mp3" type="audio/mpeg">
     </audio>
@@ -154,14 +92,14 @@
         const audio = document.getElementById("miraiAudio");
         const screen = document.getElementById("terminalScreen");
         
-        const fullText = `إلى جميع المواطنين...\nتم إعلان حالة احتواء من المستوى الأحمر.\n\nبرج ميراي المركزي يتعرض للهجوم!\n\nأي وجود بشري قرب المنطقة سيتم التعامل معه كتهديد مباشر.\n\nابقوا في الملاجئ ولا تغادروا أماكنكم!`;
+        // النص مفرغ بدون رموز خاصة تسبب مشاكل لبعض المتصفحات
+        const fullText = "إلى جميع المواطنين...\nتم إعلان حالة احتواء من المستوى الأحمر.\n\nبرج ميراي المركزي يتعرض للهجوم!\n\nأي وجود بشري قرب المنطقة سيتم التعامل معه كتهديد مباشر.\n\nابقوا في الملاجئ ولا تغادروا أماكنكم!";
         
         let index = 0;
 
         function startTyping() {
             if (index < fullText.length) {
                 let currentChar = fullText.charAt(index);
-                let delay = 120; // السرعة المتوافقة رياضياً مع الـ 21 ثانية الصوتية
                 
                 if (index === 0) screen.innerHTML = ""; 
 
@@ -171,15 +109,9 @@
                     screen.innerHTML += currentChar;
                 }
                 
-                // فحص ذكي ومبسط للعلامات لتجنب التعارض
-                if (currentChar === '.' || currentChar === '!') {
-                    delay = 900; 
-                } else if (currentChar === '،') {
-                    delay = 450;  
-                }
-                
                 index++;
-                setTimeout(startTyping, delay);
+                // السرعة الثابتة والموزونة الحسابية لتغطية الـ 21 ثانية الصوتية بالملي ثانية
+                setTimeout(startTyping, 132);
             } else {
                 screen.innerHTML += '<span class="cursor"></span>';
             }
@@ -187,13 +119,9 @@
 
         function initializeBroadcast() {
             document.getElementById("actionBtn").style.display = "none";
-            
             audio.load();
             audio.volume = 1.0;
-            audio.play().catch(error => {
-                console.log("تأكد من وجود ملف mirai.mp3 بجانب الكود.");
-            });
-
+            audio.play().catch(error => { console.log("Audio play error"); });
             if (navigator.vibrate) { navigator.vibrate(); }
             startTyping();
         }
