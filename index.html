@@ -3,16 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-select=none">
-    <title>🚨 نظام ميراي المركزي</title>
+    <title>🚨 MIRAI CENTRAL SYSTEM - LEVEL RED</title>
     <style>
         :root {
             --primary-color: #ff0033;
+            --glow-color: rgba(255, 0, 51, 0.6);
             --bg-color: #030000;
         }
+
         body {
             background-color: var(--bg-color);
             color: var(--primary-color);
-            font-family: monospace, sans-serif;
+            font-family: 'Courier New', Courier, monospace, sans-serif;
             margin: 0;
             padding: 20px;
             display: flex;
@@ -21,69 +23,128 @@
             min-height: 100vh;
             box-sizing: border-box;
             overflow: hidden;
+            position: relative;
         }
+
+        /* خلفية شبكية عسكرية وتأثير تشويش الشاشات القديمة Scanlines */
+        body::before {
+            content: " ";
+            display: block;
+            position: absolute;
+            top: 0; left: 0; bottom: 0; right: 0;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0), rgba(0, 0, 255, 0.03));
+            z-index: 2;
+            background-size: 100% 4px, 6px 100%;
+            pointer-events: none;
+        }
+
+        /* إطار النظام الرئيسي - متوافق تلقائياً مع حجم الشاشة */
         .terminal-container {
             border: 2px solid var(--primary-color);
-            background-color: #0f0003;
-            box-shadow: 0 0 25px rgba(255, 0, 51, 0.5);
-            max-width: 650px;
+            background-color: rgba(15, 0, 3, 0.85);
+            box-shadow: 0 0 30px var(--glow-color), inset 0 0 20px rgba(255, 0, 51, 0.2);
+            max-width: 700px;
             width: 100%;
-            padding: 25px;
+            padding: 30px;
             border-radius: 4px;
-            text-align: center;
+            position: relative;
+            z-index: 5;
+            backdrop-filter: blur(5px);
         }
+
         .system-header {
-            font-size: 22px;
+            font-size: 24px;
             font-weight: bold;
+            letter-spacing: 2px;
             border-bottom: 2px dashed var(--primary-color);
-            padding-bottom: 12px;
-            margin-bottom: 20px;
+            padding-bottom: 15px;
+            margin-bottom: 25px;
+            text-shadow: 0 0 10px var(--primary-color);
         }
+
+        /* وميض كلمة خطر */
+        .danger-glitch {
+            animation: flash 0.8s infinite alternate;
+            display: inline-block;
+        }
+
         .terminal-screen {
-            font-size: 20px;
-            line-height: 1.6;
+            font-size: 21px;
+            line-height: 1.7;
             color: #ffb3b3;
             text-align: right;
-            min-height: 200px;
+            min-height: 220px;
             white-space: pre-wrap;
-            margin-bottom: 25px;
-            border: 1px solid rgba(255, 0, 51, 0.2);
-            padding: 15px;
-            background: #000000;
+            margin-bottom: 30px;
+            text-shadow: 0 0 5px rgba(255, 179, 179, 0.5);
         }
+
+        /* مؤشر الكتابة الوامض الشبيه بأنظمة الهاكرز والعسكر */
         .cursor {
             display: inline-block;
             width: 10px;
-            height: 18px;
+            height: 20px;
             background-color: var(--primary-color);
             animation: blink 0.6s infinite;
             vertical-align: middle;
+            margin-right: 5px;
         }
+
+        /* زر فك التشفير الأسطوري */
         .terminal-btn {
             background-color: transparent;
             color: var(--primary-color);
             border: 2px solid var(--primary-color);
-            padding: 12px 35px;
-            font-size: 16px;
+            padding: 15px 40px;
+            font-size: 18px;
             font-weight: bold;
+            font-family: 'Courier New', sans-serif;
             cursor: pointer;
-            box-shadow: 0 0 10px rgba(255, 0, 51, 0.2);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 0 15px rgba(255, 0, 51, 0.2);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
         }
+
         .terminal-btn:hover {
             background-color: var(--primary-color);
             color: black;
+            box-shadow: 0 0 25px var(--primary-color);
         }
-        @keyframes blink { 50% { opacity: 0; } }
+
+        @keyframes flash {
+            0% { opacity: 1; text-shadow: 0 0 15px var(--primary-color); }
+            100% { opacity: 0.3; text-shadow: 0 0 2px var(--primary-color); }
+        }
+
+        @keyframes blink {
+            50% { opacity: 0; }
+        }
+
+        /* تحسينات إضافية لتلائم الحواسب والشاشات الكبيرة */
+        @media (min-width: 768px) {
+            .system-header { font-size: 28px; }
+            .terminal-screen { font-size: 24px; min-height: 260px; }
+            .terminal-container { padding: 45px; }
+        }
     </style>
 </head>
 <body>
 
     <div class="terminal-container">
-        <div class="system-header">⚠️ نـظـام مـيـراي الـمـركـزي ⚠️</div>
-        <div id="terminalScreen" class="terminal-screen">اضغط أدناه لفك تشفير البث العسكري الطارئ واستقبل التوجيهات...</div>
+        <div class="system-header">
+            <span class="danger-glitch">⚠️</span> نـظـام مـيـراي الـمـركـزي <span class="danger-glitch">⚠️</span>
+        </div>
+        
+        <!-- الشاشة التي تدفق فيها الرسالة الاستراتيجية للمواطنين -->
+        <div id="terminalScreen" class="terminal-screen">اضغط أدناه لفك تشفير البث العسكري الطارئ واستقبال التوجيهات...</div>
+        
         <button id="actionBtn" class="terminal-btn" onclick="initializeBroadcast()">بث حالة الاحتواء 📡</button>
     </div>
 
+    <!-- استدعاء ملف الصوت المرفوع على جيتهوب -->
     <audio id="miraiAudio" preload="auto">
         <source src="mirai.mp3" type="audio/mpeg">
     </audio>
@@ -92,16 +153,17 @@
         const audio = document.getElementById("miraiAudio");
         const screen = document.getElementById("terminalScreen");
         
-        // النص مفرغ بدون رموز خاصة تسبب مشاكل لبعض المتصفحات
-        const fullText = "إلى جميع المواطنين...\nتم إعلان حالة احتواء من المستوى الأحمر.\n\nبرج ميراي المركزي يتعرض للهجوم!\n\nأي وجود بشري قرب المنطقة سيتم التعامل معه كتهديد مباشر.\n\nابقوا في الملاجئ ولا تغادروا أماكنكم!";
+        // نص الرسالة الأسطورية الصادمة
+        const fullText = `إلى جميع المواطنين...\nتم إعلان حالة احتواء من المستوى الأحمر.\n\nبرج ميراي المركزي يتعرض للهجوم!\n\nأي وجود بشري قرب المنطقة سيتم التعامل معه كتهديد مباشر.\n\nابقوا في الملاجئ ولا تغادروا أماكنكم!`;
         
         let index = 0;
 
+        // دالة الكتابة السينمائية المتزامنة مع سرعة الإلقاء والموسيقى
         function startTyping() {
             if (index < fullText.length) {
                 let currentChar = fullText.charAt(index);
                 
-                if (index === 0) screen.innerHTML = ""; 
+                if (index === 0) screen.innerHTML = ""; // مسح نص الترحيب عند البدء
 
                 if (currentChar === '\n') {
                     screen.innerHTML += '<br>';
@@ -110,19 +172,31 @@
                 }
                 
                 index++;
-                // السرعة الثابتة والموزونة الحسابية لتغطية الـ 21 ثانية الصوتية بالملي ثانية
-                setTimeout(startTyping, 132);
+                
+                // سرعة خروج الحروف مدروسة (65 ملي ثانية) لتناسب وتيرة التحذير الصوتي الجاد
+                setTimeout(startTyping, 65);
             } else {
+                // إضافة المؤشر الوامض في نهاية النص عند اكتماله
                 screen.innerHTML += '<span class="cursor"></span>';
             }
         }
 
         function initializeBroadcast() {
             document.getElementById("actionBtn").style.display = "none";
+            
+            // تشغيل ملف الصوت المرفوع محلياً بكفاءة تامة وبأعلى جودة
             audio.load();
             audio.volume = 1.0;
-            audio.play().catch(error => { console.log("Audio play error"); });
-            if (navigator.vibrate) { navigator.vibrate(); }
+            audio.play().catch(error => {
+                console.log("خطأ في تشغيل الصوت، تأكد من وجود ملف mirai.mp3 في المشروع.");
+            });
+
+            // تفعيل نظام الاهتزاز العسكري على الهواتف الذكية
+            if (navigator.vibrate) {
+                navigator.vibrate([100, 50, 100, 50, 300]);
+            }
+
+            // إطلاق تدفق الكلمات الأسطوري
             startTyping();
         }
     </script>
