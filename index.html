@@ -26,6 +26,7 @@
             position: relative;
         }
 
+        /* خلفية شبكية عسكرية وتأثير تشويش الشاشات القديمة Scanlines */
         body::before {
             content: " ";
             display: block;
@@ -37,6 +38,7 @@
             pointer-events: none;
         }
 
+        /* إطار النظام الرئيسي - متوافق تلقائياً مع حجم الشاشة */
         .terminal-container {
             border: 2px solid var(--primary-color);
             background-color: rgba(15, 0, 3, 0.85);
@@ -60,6 +62,7 @@
             text-shadow: 0 0 10px var(--primary-color);
         }
 
+        /* وميض كلمة خطر */
         .danger-glitch {
             animation: flash 0.8s infinite alternate;
             display: inline-block;
@@ -76,6 +79,7 @@
             text-shadow: 0 0 5px rgba(255, 179, 179, 0.5);
         }
 
+        /* مؤشر الكتابة الوامض الشبيه بأنظمة الهاكرز والعسكر */
         .cursor {
             display: inline-block;
             width: 10px;
@@ -86,6 +90,7 @@
             margin-right: 5px;
         }
 
+        /* زر فك التشفير الأسطوري */
         .terminal-btn {
             background-color: transparent;
             color: var(--primary-color);
@@ -99,6 +104,8 @@
             letter-spacing: 1px;
             box-shadow: 0 0 15px rgba(255, 0, 51, 0.2);
             transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
         }
 
         .terminal-btn:hover {
@@ -112,8 +119,11 @@
             100% { opacity: 0.3; text-shadow: 0 0 2px var(--primary-color); }
         }
 
-        @keyframes blink { 50% { opacity: 0; } }
+        @keyframes blink {
+            50% { opacity: 0; }
+        }
 
+        /* تحسينات إضافية لتلائم الحواسب والشاشات الكبيرة */
         @media (min-width: 768px) {
             .system-header { font-size: 28px; }
             .terminal-screen { font-size: 24px; min-height: 260px; }
@@ -128,11 +138,13 @@
             <span class="danger-glitch">⚠️</span> نـظـام مـيـراي الـمـركـزي <span class="danger-glitch">⚠️</span>
         </div>
         
-        <div id="terminalScreen" class="terminal-screen">اضغط أدناه لفك تشفير البث العسكري الطارئ واستقبل التوجيهات...</div>
+        <!-- الشاشة التي تدفق فيها الرسالة الاستراتيجية للمواطنين -->
+        <div id="terminalScreen" class="terminal-screen">اضغط أدناه لفك تشفير البث العسكري الطارئ واستقبال التوجيهات...</div>
         
         <button id="actionBtn" class="terminal-btn" onclick="initializeBroadcast()">بث حالة الاحتواء 📡</button>
     </div>
 
+    <!-- استدعاء ملف الصوت المرفوع على جيتهوب -->
     <audio id="miraiAudio" preload="auto">
         <source src="mirai.mp3" type="audio/mpeg">
     </audio>
@@ -141,16 +153,17 @@
         const audio = document.getElementById("miraiAudio");
         const screen = document.getElementById("terminalScreen");
         
+        // نص الرسالة الأسطورية الصادمة
         const fullText = `إلى جميع المواطنين...\nتم إعلان حالة احتواء من المستوى الأحمر.\n\nبرج ميراي المركزي يتعرض للهجوم!\n\nأي وجود بشري قرب المنطقة سيتم التعامل معه كتهديد مباشر.\n\nابقوا في الملاجئ ولا تغادروا أماكنكم!`;
         
         let index = 0;
 
+        // دالة الكتابة السينمائية المتزامنة مع سرعة الإلقاء والموسيقى
         function startTyping() {
             if (index < fullText.length) {
                 let currentChar = fullText.charAt(index);
-                let delay = 120; // السرعة الأساسية المتوافقة رياضياً مع الـ 21 ثانية
                 
-                if (index === 0) screen.innerHTML = ""; 
+                if (index === 0) screen.innerHTML = ""; // مسح نص الترحيب عند البدء
 
                 if (currentChar === '\n') {
                     screen.innerHTML += '<br>';
@@ -158,16 +171,12 @@
                     screen.innerHTML += currentChar;
                 }
                 
-                // وقفات ذكية سينمائية عند علامات التوقف لتطابق نبرة الإلقاء البشري الموزع
-                if (currentChar === '.' || currentChar === '!') {
-                    delay = 1000; // التوقف لمدة ثانية كاملة عند نهاية الجملة
-                } else if (currentChar === '،') {
-                    delay = 500;  // التوقف لنصف ثانية عند الفاصلة
-                }
-                
                 index++;
-                setTimeout(startTyping, delay);
+                
+                // سرعة خروج الحروف مدروسة (65 ملي ثانية) لتناسب وتيرة التحذير الصوتي الجاد
+                setTimeout(startTyping, 65);
             } else {
+                // إضافة المؤشر الوامض في نهاية النص عند اكتماله
                 screen.innerHTML += '<span class="cursor"></span>';
             }
         }
@@ -175,13 +184,19 @@
         function initializeBroadcast() {
             document.getElementById("actionBtn").style.display = "none";
             
+            // تشغيل ملف الصوت المرفوع محلياً بكفاءة تامة وبأعلى جودة
             audio.load();
             audio.volume = 1.0;
             audio.play().catch(error => {
-                console.log("تأكد من وجود ملف mirai.mp3 بجانب الكود.");
+                console.log("خطأ في تشغيل الصوت، تأكد من وجود ملف mirai.mp3 في المشروع.");
             });
 
-            if (navigator.vibrate) { navigator.vibrate(); }
+            // تفعيل نظام الاهتزاز العسكري على الهواتف الذكية
+            if (navigator.vibrate) {
+                navigator.vibrate([100, 50, 100, 50, 300]);
+            }
+
+            // إطلاق تدفق الكلمات الأسطوري
             startTyping();
         }
     </script>
